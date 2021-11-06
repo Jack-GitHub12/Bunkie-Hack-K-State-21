@@ -1,4 +1,9 @@
+import 'package:bunkie/constants/colors.dart';
+import 'package:bunkie/tabs/match_tab.dart';
+import 'package:bunkie/tabs/messages_tab.dart';
+import 'package:bunkie/tabs/settings_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -18,6 +23,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(children: [
+          Image.asset(
+            'lib/assets/appicon.png',
+            height:40 ,
+            width: 40,
+            fit: BoxFit.fitHeight,
+            ),
+            SizedBox(width: 10,),
+            Text('Bunkie',style: GoogleFonts.montserrat(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold),)
+        ],),
+        backgroundColor: Colors.white,),
       bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
           selectedFontSize: 12 ,
@@ -34,27 +51,22 @@ class _HomePageState extends State<HomePage> {
                   Container(
                 height: 42 ,
                 width: 42 ,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(21),
-                  color: Color(0xff4bb29e),
-                ),
+                
+                
                 child: Icon(
-                  Icons.today,
+                  Icons.home,
                   size: 30,
-                  color: Colors.white,
+                  color: primaryColor,
                 ),
               ),
               activeIcon: Container(
                 height: 42,
                 width: 42,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(21),
-                  color: Color(0xff125194),
-                ),
+                
                 child: Icon(
-                  Icons.today,
+                  Icons.home,
                   size: 30,
-                  color: Colors.white,
+                  color: Colors.green,
                 ),
               ),
             ),
@@ -63,27 +75,22 @@ class _HomePageState extends State<HomePage> {
                 icon: Container(
                   width: 42,
                   height: 42,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(21),
-                    color: Color(0xff4bb29e),
-                  ),
+                  
+                  
                   child: Icon(
-                    Icons.star_rounded,
-                    size: 35,
-                    color: Colors.white,
+                    Icons.chat,
+                    size: 27,
+                    color: primaryColor,
                   ),
                 ),
                 activeIcon: Container(
                   width: 42,
                   height: 42,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(21),
-                    color: Color(0xff125194),
-                  ),
+                  
                   child: Icon(
-                    Icons.star_rounded,
-                    size: 35,
-                    color: Colors.white,
+                    Icons.chat,
+                    size: 27,
+                    color: Colors.green,
                   ),
                 )),
             BottomNavigationBarItem(
@@ -91,27 +98,21 @@ class _HomePageState extends State<HomePage> {
                 icon: Container(
                   width: 42,
                   height: 42,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(21),
-                    color: Color(0xff4bb29e),
-                  ),
+                  
                   child: Icon(
-                    Icons.av_timer,
-                    size: 35,
-                    color: Colors.white,
+                    Icons.settings,
+                    size: 30,
+                    color: primaryColor,
                   ),
                 ),
                 activeIcon: Container(
                   width: 42,
                   height: 42,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(21),
-                    color: Color(0xff125194),
-                  ),
+                 
                   child: Icon(
-                    Icons.av_timer,
-                    size: 35,
-                    color: Colors.white,
+                    Icons.settings,
+                    size: 30,
+                    color: Colors.green,
                   ),
                 )),
            
@@ -125,6 +126,25 @@ class _HomePageState extends State<HomePage> {
           },
           currentIndex: selectedIndex,
         ),
+        body: getBody(),
+    );
+  }
+   Widget getBody() {
+    return Column(
+      children: [
+        Expanded(
+          child: PageView(
+            physics: NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            children: [MatchTab(), MessagesTab(), SettingsTab(),],
+          ),
+        ),
+        Container(
+          height: 2,
+          width: MediaQuery.of(context).size.width,
+          color: primaryColor,
+        )
+      ],
     );
   }
 }
