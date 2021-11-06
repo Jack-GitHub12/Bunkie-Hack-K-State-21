@@ -1,3 +1,4 @@
+import 'package:bunkie/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -11,7 +12,9 @@ class _SettingsTabState extends State<SettingsTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: Column(children: [
+        ProfileWidget()
+      ],),
     );
   }
 }
