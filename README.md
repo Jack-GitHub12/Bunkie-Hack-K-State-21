@@ -1,7 +1,8 @@
 # Bunkie
 > 
 > 
-![Untitled-2](https://user-images.githubusercontent.com/72348727/140615318-88862b33-58c5-4881-88a2-a268afc8ae03.png)
+![Untitled-2](https://user-images.githubusercontent.com/72348727/140623249-2c238c9a-abe6-4a66-be1a-6cae4c8928bd.png)
+
 
 
 ## Table of Contents
@@ -55,4 +56,4 @@ To do:
 
 
 ## Contact
-Created by Jack, Jake, Helen, Kate
+Created by Jack, Jake, Helen, Katie
