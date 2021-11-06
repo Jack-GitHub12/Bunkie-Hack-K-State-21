@@ -55,4 +55,4 @@ To do:
 
 
 ## Contact
-Created by 
+Created by Jack, Jake, Helen, Kate
