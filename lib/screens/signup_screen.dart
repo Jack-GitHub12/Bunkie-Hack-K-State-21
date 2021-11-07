@@ -53,8 +53,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xffE6E6E6),
-              Color(0xff14279B),
+              primaryColor1,
+              primaryColor1,
             ],
           ),
         ),
@@ -75,8 +75,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Image.asset(
                           'lib/assets/bunkies_logo.png',
-                          height: 60,
-                          width: 60,
+                          height: 80,
+                          width: 80,
                           fit: BoxFit.cover,
                         ),
                         Padding(
@@ -84,10 +84,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               const EdgeInsets.only(bottom: 8.0, right: 15),
                           child: Text(
                             'Bunkie',
-                            style: GoogleFonts.montserrat(
-                                fontSize: 30,
-                                color: primaryColor,
-                                fontWeight: FontWeight.bold),
+                            style: GoogleFonts.fredokaOne(
+                                fontSize: 50,
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal),
                           ),
                         )
                       ],
@@ -103,9 +103,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "Email address",
+                                "Email",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
+                                    color: primaryColor2,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
                               ),
                               SizedBox(
                                 height: 10,
@@ -129,7 +131,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Text(
                                 "Password",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
+                                    color: primaryColor2,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
                               ),
                               SizedBox(
                                 height: 10,
@@ -151,36 +155,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if(email.text.isNotEmpty && password.text.isNotEmpty)
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AddBioScreen(user: UserModel.empty()),
-                          ),
-                        );
+                        if (email.text.isNotEmpty && password.text.isNotEmpty)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  AddBioScreen(user: UserModel.empty()),
+                            ),
+                          );
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.symmetric(vertical: 15),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                color: Colors.grey.shade200,
-                                offset: Offset(2, 4),
-                                blurRadius: 5,
-                                spreadRadius: 2)
-                          ],
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Color(0xff14279B),
-                              Color(0xff14279B),
-                            ],
-                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          border: Border.all(color: Colors.white, width: 2),
                         ),
                         child: Text(
                           'Register Now',
@@ -188,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: height * .14),
+                    SizedBox(height: height * .1),
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -198,15 +188,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 20),
-                        padding: EdgeInsets.all(15),
+                        padding: EdgeInsets.all(5),
                         alignment: Alignment.bottomCenter,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Already have an account ?',
+                              'Already have an account?',
                               style: TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.w600),
+                                  fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
                               width: 10,
@@ -215,7 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               'Login',
                               style: TextStyle(
                                   color: Color(0xff14279B),
-                                  fontSize: 13,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w600),
                             ),
                           ],

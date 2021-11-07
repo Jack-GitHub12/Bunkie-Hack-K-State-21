@@ -52,10 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            Color(0xffE6E6E6),
-            Color(0xff14279B),
-          ],
+          colors: [primaryColor1, primaryColor1],
         ),
       ),
       height: height,
@@ -75,18 +72,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Image.asset(
                         'lib/assets/bunkies_logo.png',
-                        height: 60,
-                        width: 60,
+                        height: 80,
+                        width: 80,
                         fit: BoxFit.cover,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0, right: 15),
                         child: Text(
                           'Bunkie',
-                          style: GoogleFonts.montserrat(
-                              fontSize: 30,
-                              color: primaryColor,
-                              fontWeight: FontWeight.bold),
+                          style: GoogleFonts.fredokaOne(
+                              fontSize: 50,
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal),
                         ),
                       )
                     ],
@@ -102,7 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               "Email",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
+                                  color: primaryColor2,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15),
                             ),
                             SizedBox(
                               height: 10,
@@ -125,7 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               "Password",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
+                                  color: primaryColor2,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15),
                             ),
                             SizedBox(
                               height: 10,
@@ -146,17 +147,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () async {
                       if (email.text.isNotEmpty && password.text.isNotEmpty) {
-                        if(await _auth.signInWithEmailAndPassword(
-                            email: email.text, password: password.text) != null);
+                        if (await _auth.signInWithEmailAndPassword(
+                                email: email.text, password: password.text) !=
+                            null) ;
                         Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
-                        ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
                       }
-
-                      
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'Login',
                         style: GoogleFonts.montserrat(
-                            fontSize: 20, color: Colors.black),
+                            fontSize: 20, color: primaryColor2),
                       ),
                     ),
                   ),
@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       alignment: Alignment.centerRight,
-                      child: Text('Forgot Password ?',
+                      child: Text('Forgot Password?',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -207,20 +207,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Don\'t have an account ?',
+                            'Don\'t have an account?',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 13,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 8,
                           ),
                           Text(
                             'Register',
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13,
+                                color: Color(0xff14279B),
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
                         ],

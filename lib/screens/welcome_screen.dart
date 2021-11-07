@@ -27,8 +27,8 @@ class WelcomeScreen extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0xffE6E6E6),
-                Color(0xff14279B),
+                primaryColor1,
+                primaryColor1,
               ],
             ),
           ),
@@ -40,24 +40,31 @@ class WelcomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Image.asset('lib/assets/bunkies_logo.png',
-                  height: 60,
-                  width: 60,
-                  fit: BoxFit.cover,
+                  Image.asset(
+                    'lib/assets/bunkies_logo.png',
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom:8.0,right: 15),
-                    child: Text('Bunkie',style: GoogleFonts.montserrat(fontSize: 30,color: primaryColor,fontWeight: FontWeight.bold),),
+                    padding: const EdgeInsets.only(bottom: 8.0, right: 25),
+                    child: Text(
+                      'Bunkie',
+                      style: GoogleFonts.fredokaOne(
+                          fontSize: 60,
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal),
+                    ),
                   )
                 ],
               ),
               SizedBox(
-                height: 60,
+                height: 50,
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -75,7 +82,8 @@ class WelcomeScreen extends StatelessWidget {
                       color: Colors.white),
                   child: Text(
                     'Login',
-                    style: GoogleFonts.montserrat(fontSize: 20, color: Colors.black),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20, color: primaryColor2),
                   ),
                 ),
               ),
@@ -84,8 +92,8 @@ class WelcomeScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -97,7 +105,8 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   child: Text(
                     'Sign Up',
-                    style: GoogleFonts.montserrat(fontSize: 20, color: Colors.white),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20, color: Colors.white),
                   ),
                 ),
               ),
