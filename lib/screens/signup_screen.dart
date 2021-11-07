@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'package:google_fonts/google_fonts.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -19,30 +20,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final email = TextEditingController();
+    final password = TextEditingController();
+    @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      email.addListener(() {});
+      password.addListener(() {});
+    }
+
+    @override
+    void dispose() {
+      // TODO: implement dispose
+      super.dispose();
+      email.dispose();
+      password.dispose();
+    }
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: Offset(2, 4),
-                  blurRadius: 5,
-                  spreadRadius: 2)
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.grey.shade200,
+                offset: Offset(2, 4),
+                blurRadius: 5,
+                spreadRadius: 2)
+          ],
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xffE6E6E6),
+              Color(0xff14279B),
             ],
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xffE6E6E6),
-                Color(0xff14279B),
-              ],
-            ),
           ),
+        ),
         height: height,
         child: Stack(
           children: <Widget>[
-         
             Container(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: SingleChildScrollView(
@@ -51,27 +69,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(height: height * .2),
-                   Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.asset('lib/assets/bunkies_logo.png',
-                  height: 60,
-                  width: 60,
-                  fit: BoxFit.cover,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:8.0,right: 15),
-                    child: Text('Bunkie',style: GoogleFonts.montserrat(fontSize: 30,color: primaryColor,fontWeight: FontWeight.bold),),
-                  )
-                ],
-              ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Image.asset(
+                          'lib/assets/bunkies_logo.png',
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 8.0, right: 15),
+                          child: Text(
+                            'Bunkie',
+                            style: GoogleFonts.montserrat(
+                                fontSize: 30,
+                                color: primaryColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
                     SizedBox(
                       height: 50,
                     ),
                     Column(
                       children: <Widget>[
-                       
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           child: Column(
@@ -86,6 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 height: 10,
                               ),
                               TextField(
+                                  controller: email,
                                   keyboardType: TextInputType.emailAddress,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -110,6 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               TextField(
                                   obscureText: true,
+                                  controller: password,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       fillColor: Color(0xfff3f3f4),
@@ -123,12 +150,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddBioScreen(user: UserModel.empty()),
-                        ),
-                      ),
+                      onTap: () {
+                        if(email.text.isNotEmpty && password.text.isNotEmpty)
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AddBioScreen(user: UserModel.empty()),
+                          ),
+                        );
+                      },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.symmetric(vertical: 15),

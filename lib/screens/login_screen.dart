@@ -2,10 +2,12 @@ import 'package:bunkie/constants/colors.dart';
 import 'package:bunkie/screens/home.dart';
 import 'package:bunkie/screens/signup_screen.dart';
 import 'package:bunkie/widgets/custom_clipper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'package:google_fonts/google_fonts.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -14,33 +16,51 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
+  final email = TextEditingController();
+  final password = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    email.addListener(() {});
+    password.addListener(() {});
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    email.dispose();
+    password.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: Offset(2, 4),
-                  blurRadius: 5,
-                  spreadRadius: 2)
-            ],
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xffE6E6E6),
-                Color(0xff14279B),
-              ],
-            ),
-          ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.grey.shade200,
+              offset: Offset(2, 4),
+              blurRadius: 5,
+              spreadRadius: 2)
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xffE6E6E6),
+            Color(0xff14279B),
+          ],
+        ),
+      ),
       height: height,
       child: Stack(
         children: <Widget>[
-         
           Container(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: SingleChildScrollView(
@@ -50,20 +70,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   SizedBox(height: height * .2),
                   Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.asset('lib/assets/bunkies_logo.png',
-                  height: 60,
-                  width: 60,
-                  fit: BoxFit.cover,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        'lib/assets/bunkies_logo.png',
+                        height: 60,
+                        width: 60,
+                        fit: BoxFit.cover,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0, right: 15),
+                        child: Text(
+                          'Bunkie',
+                          style: GoogleFonts.montserrat(
+                              fontSize: 30,
+                              color: primaryColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:8.0,right: 15),
-                    child: Text('Bunkie',style: GoogleFonts.montserrat(fontSize: 30,color: primaryColor,fontWeight: FontWeight.bold),),
-                  )
-                ],
-              ),
                   SizedBox(height: 50),
                   Column(
                     children: <Widget>[
@@ -81,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 10,
                             ),
                             TextField(
+                                controller: email,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -103,6 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 10,
                             ),
                             TextField(
+                                controller: password,
                                 obscureText: true,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -115,42 +144,51 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
+                    onTap: () async {
+                      if (email.text.isNotEmpty && password.text.isNotEmpty) {
+                        if(await _auth.signInWithEmailAndPassword(
+                            email: email.text, password: password.text) != null);
+                        Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
                         ),
+                      );
+                      }
+
+                      
+                    },
                     child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 13),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                            color: Color(0xffE6E6E6).withAlpha(100),
-                            offset: Offset(2, 4),
-                            blurRadius: 8,
-                            spreadRadius: 2)
-                      ],
-                      color: Colors.white),
-                  child: Text(
-                    'Login',
-                    style: GoogleFonts.montserrat(fontSize: 20, color: Colors.black),
-                  ),
-                ),
-              
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(vertical: 13),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Color(0xffE6E6E6).withAlpha(100),
+                                offset: Offset(2, 4),
+                                blurRadius: 8,
+                                spreadRadius: 2)
+                          ],
+                          color: Colors.white),
+                      child: Text(
+                        'Login',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 20, color: Colors.black),
+                      ),
+                    ),
                   ),
                   GestureDetector(
-                    onTap:(){},
+                    onTap: () {},
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       alignment: Alignment.centerRight,
                       child: Text('Forgot Password ?',
                           style: TextStyle(
-                            color: Colors.white,
-                              fontSize: 14, fontWeight: FontWeight.w500)),
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500)),
                     ),
                   ),
                   SizedBox(height: height * .055),
@@ -171,8 +209,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           Text(
                             'Don\'t have an account ?',
                             style: TextStyle(
-                              color: Colors.white,
-                                fontSize: 13, fontWeight: FontWeight.w600),
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600),
                           ),
                           SizedBox(
                             width: 10,
