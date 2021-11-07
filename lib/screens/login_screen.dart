@@ -147,9 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () async {
                       if (email.text.isNotEmpty && password.text.isNotEmpty) {
-                        if (await _auth.signInWithEmailAndPassword(
-                                email: email.text, password: password.text) !=
-                            null) ;
+                        // if (await _auth.signInWithEmailAndPassword(
+                        //         email: email.text, password: password.text) !=
+                        //     null) ;
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

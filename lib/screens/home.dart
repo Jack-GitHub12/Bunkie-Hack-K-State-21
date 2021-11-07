@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             Image.asset(
               'lib/assets/bunkies_logo.png',
-              height: 40,
-              width: 40,
+              height: 50,
+              width: 50,
               fit: BoxFit.fitHeight,
             ),
             SizedBox(
@@ -39,10 +39,10 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               'Bunkie',
-              style: GoogleFonts.righteous(
-                  fontSize: 20,
+              style: GoogleFonts.fredokaOne(
+                  fontSize: 30,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.normal),
             )
           ],
         ),

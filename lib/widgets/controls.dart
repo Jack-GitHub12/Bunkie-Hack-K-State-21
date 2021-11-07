@@ -10,48 +10,67 @@ class Controls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top:10),
-     
+      padding: EdgeInsets.only(top: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          
           GestureDetector(
-            onTap:like,
+            onTap: like,
             child: Container(
               height: buttonHeight,
               width: buttonHeight,
-              child: Center(child: Icon(Icons.check,color: Colors.green[300],size: buttonHeight-10,),),
+              child: Center(
+                child: Icon(
+                  Icons.check,
+                  color: Colors.green[300],
+                  size: buttonHeight - 10,
+                ),
+              ),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(buttonHeight/2)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(buttonHeight / 2)),
             ),
           ),
-          SizedBox(width: 50,),
+          SizedBox(
+            width: 50,
+          ),
           GestureDetector(
-            onTap:chat,
+            onTap: chat,
             child: Container(
               height: buttonHeight,
               width: buttonHeight,
-              child: Center(child: Icon(Icons.chat,color: Colors.blue[300],size: buttonHeight-10,),),
+              child: Center(
+                child: Icon(
+                  Icons.chat,
+                  color: Colors.blue[300],
+                  size: buttonHeight - 13,
+                ),
+              ),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(buttonHeight/2)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(buttonHeight / 2)),
             ),
           ),
-          SizedBox(width: 50,),
+          SizedBox(
+            width: 50,
+          ),
           GestureDetector(
-            onTap:dislike,
+            onTap: dislike,
             child: Container(
               height: buttonHeight,
               width: buttonHeight,
-              child: Center(child: Icon(Icons.close,color: Colors.red[300],size: buttonHeight-10,),),
+              child: Center(
+                child: Icon(
+                  Icons.close,
+                  color: Colors.red[300],
+                  size: buttonHeight - 10,
+                ),
+              ),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(buttonHeight/2)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(buttonHeight / 2)),
             ),
           ),
-          
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:bunkie/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 
 class MatchTab extends StatefulWidget {
-  const MatchTab({ Key? key }) : super(key: key);
+  const MatchTab({Key? key}) : super(key: key);
 
   @override
   _MatchTabState createState() => _MatchTabState();
@@ -15,9 +15,10 @@ class _MatchTabState extends State<MatchTab> {
     return Stack(
       children: [
         Container(
-          child: Center(child: ProfileCard(),),
+          child: Center(
+            child: ProfileCard(),
+          ),
         ),
-        
       ],
     );
   }
